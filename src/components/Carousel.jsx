@@ -1,6 +1,7 @@
 import React from "react";
 
-const Carousel = () => {
+const Carousel = ({srch}) => {
+  const {search, setSearch} = srch;
   return (
     <div>
       {/* main carousel loading here */}
@@ -20,6 +21,8 @@ const Carousel = () => {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
                 <button className="btn btn-outline-none btn-info" type="submit">
                   Search
@@ -42,9 +45,9 @@ const Carousel = () => {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn btn-outline-none btn-info" type="submit">
+                {/* <button className="btn btn-outline-none btn-info" type="submit">
                   Search
-                </button>
+                </button> */}
               </form>
             </div>
           </div>

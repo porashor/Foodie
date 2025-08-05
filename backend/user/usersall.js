@@ -3,6 +3,10 @@ const router = express.Router();
 const Users = require("../model/Users");
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+
+
+
 
 // posting function
 router.post(
@@ -18,12 +22,14 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword  = await bcrypt.hash(req.body.password, salt);
     try {
       const pushData = {
         name: req.body.name,
         location: req.body.location,
         email: req.body.email,
-        password: req.body.password,
+        password: hashedPassword,
       };
       const data = await Users.create(pushData);
       res.send(data);

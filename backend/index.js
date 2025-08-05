@@ -3,12 +3,18 @@ const connectDB = require("./dbs/MongoDB");
 const Food = require("./food/food");
 const Category = require("./catagory/catagory");
 const Users = require("./user/usersall");
+const logUser = require("./user/loguser");
+const cors = require("cors");
 
 
 // Create an Express application
 const app = express();
 const port = 4000;
 app.use(express.json());
+app.use(cors({
+  origin: "http://localhost:5173", // or "*" for all origins during dev
+  credentials: true
+}));
 
 // Connect to MongoDB
 connectDB();
@@ -24,6 +30,7 @@ app.get("/", async (req, res) => {
 app.use("/food", Food);
 app.use("/catagory", Category);
 app.use("/users", Users);
+app.use("/login", logUser);
 
 // main app is listening on port 4000
 app.listen(port, () => {
