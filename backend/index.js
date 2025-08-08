@@ -5,7 +5,7 @@ const Category = require("./catagory/catagory");
 const Users = require("./user/usersall");
 const logUser = require("./user/loguser");
 const cors = require("cors");
-
+const order = require("./OrdersRoute/order");
 
 // Create an Express application
 const app = express();
@@ -31,6 +31,7 @@ app.use("/food", Food);
 app.use("/catagory", Category);
 app.use("/users", Users);
 app.use("/login", logUser);
+app.use("/order", order);
 
 // main app is listening on port 4000
 app.listen(port, () => {

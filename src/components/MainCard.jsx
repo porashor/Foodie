@@ -5,10 +5,10 @@ const MainCard = ({ search }) => {
   const [food, setFood] = useState([]);
   const [catagory, setCatagory] = useState([]);
   useEffect(() => {
-    fetch("https://your-app.onrender.com/food")
+    fetch("http://localhost:4000/food")
       .then((response) => response.json())
       .then((json) => setFood(json));
-    fetch("https://your-app.onrender.com/catagory")
+    fetch("http://localhost:4000/catagory")
       .then((response) => response.json())
       .then((json) => setCatagory(json));
   }, []);
@@ -30,14 +30,10 @@ const MainCard = ({ search }) => {
                     item.name.toLowerCase().includes(search.toLowerCase()) &&
                     item.CategoryName == data.CategoryName
                 )
-                .map((item, index) => (
+                .map((dataAll, index) => (
                   <div key={index}>
                     <Cart
-                      name={item.name}
-                      image={item.img}
-                      catagory={item.catagory}
-                      option={item.options[0]}
-                      description={item.description}
+                      cardData={dataAll}
                     />
                   </div>
                 ))}

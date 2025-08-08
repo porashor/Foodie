@@ -6,6 +6,8 @@ import Signup from './screens/Signup'
 import Foother from './components/Foother'
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './screens/Login'
+import MyCart from './screens/MyCart'
+import Profile from './screens/Profile'
 
 const App = () => {
 
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/myorder" element={<MyCart />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Foother/>
     </Router>

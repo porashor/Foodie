@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useState,} from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
     // all state handling 
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [location, setLocation] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     // handling function 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,12 +25,12 @@ const Signup = () => {
                 }),
             });
             const response = await data.json();
-            // if(response.status === "success"){
-            //     alert("Signup successful!");
-            // }else{
-            //     alert("Signup failed: "+ response.errors[0].value + " is " + response.errors[0].msg);
-            // }
-            console.log(response);
+            if(response){
+                alert("Signup successful!");
+                navigate("/login");
+            }else{
+                alert("Signup failed");
+            }
         }catch(err){
             console.error("Error during signup:", err);
         }

@@ -24,9 +24,9 @@ const Carousel = ({srch}) => {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <button className="btn btn-outline-none btn-info" type="submit">
+                {/* <button className="btn btn-outline-none btn-info" type="submit">
                   Search
-                </button>
+                </button> */}
               </form>
             </div>
           </div>
@@ -66,9 +66,9 @@ const Carousel = ({srch}) => {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn btn-outline-none btn-info" type="submit">
+                {/* <button className="btn btn-outline-none btn-info" type="submit">
                   Search
-                </button>
+                </button> */}
               </form>
             </div>
           </div>

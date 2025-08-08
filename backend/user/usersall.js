@@ -9,8 +9,7 @@ const bcrypt = require("bcryptjs");
 
 
 // posting function
-router.post(
-  "/",
+router.post("/",
   [
     body("email").isEmail(),
     body("password").isLength({ min: 5 }),
