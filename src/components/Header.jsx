@@ -1,27 +1,26 @@
 import React, { useContext, useState } from "react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Badge from "./Badge";
 import Model from "./Model";
 import MyCart from "../screens/MyCart";
 import { Context } from "../test/Context";
 import defaultImage from "../assets/profileAvater.png"
+import { FiLogOut } from "react-icons/fi";
+
+
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const maindata = localStorage.getItem("authtoken");
   const {state} = useContext(Context);
   const itemNumber = state.length;
+  const Navigate = useNavigate()
   const nav = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "contact", path: "/contact" },
+    { name: "About Us", path: "/about" },
     { name: "Login", path: "/login" },
     { name: "Signup", path: "/signup" },
-    { name: "MyOrders", path: "/myorder" },
   ];
-  // const shouldHide = ;
-  // const shouldShowMyOrders = data && item.name === "MyOrders";
-  // const shouldHideMyOrders = !data && item.name === "MyOrders";
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-info ">
@@ -64,7 +63,10 @@ const Header = () => {
           </div>
           {maindata ? (
             <div className="d-flex gap-2 align-items-center">
-              <button>Log</button>
+              <button className="bg-danger text-white outline-none border-0 py-1 rounded" onClick={()=>{
+                localStorage.removeItem("authtoken")
+                Navigate("/login")
+              }}>LogOUT <FiLogOut/></button>
               <button
                 className="btn ms-2 text-white"
                 onClick={() => setShowModal(true)}
