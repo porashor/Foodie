@@ -47,5 +47,15 @@ router.get("/:email", async (req, res) => {
   }
 })
 
+router.delete("/:email", async (req, res) => {
+  try {
+    const data = await Orders.findOneAndDelete({ email: req.params.email });
+    res.json(data);    
+  } catch (err) {
+    console.error("Error fetching data:", err);
+    res.status(500).send("Failed to fetch data");
+  }
+})
+
 // module exporting
 module.exports = router;
