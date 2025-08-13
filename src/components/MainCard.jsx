@@ -5,10 +5,10 @@ const MainCard = ({ search }) => {
   const [food, setFood] = useState([]);
   const [catagory, setCatagory] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/food")
+    fetch(`${import.meta.env.VITE_HOST_LINK}/food`)
       .then((response) => response.json())
       .then((json) => setFood(json));
-    fetch("http://localhost:4000/catagory")
+    fetch(`${import.meta.env.VITE_HOST_LINK}/catagory`)
       .then((response) => response.json())
       .then((json) => setCatagory(json));
   }, []);

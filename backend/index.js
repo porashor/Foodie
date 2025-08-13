@@ -13,7 +13,10 @@ const app = express();
 const port = 4000;
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // or "*" for all origins during dev
+  origin: [
+    "http://localhost:5173",
+    "https://foodie-8txr.onrender.com/"
+  ], // or "*" for all origins during dev
   credentials: true
 }));
 

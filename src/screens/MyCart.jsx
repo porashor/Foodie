@@ -15,7 +15,7 @@ const MyCart = () => {
 
   const placeOrder = async () => {
     try {
-      const exist = await fetch(`http://localhost:4000/order/${dataJWT.email}`);
+      const exist = await fetch(`${import.meta.env.VITE_HOST_LINK}/order/${dataJWT.email}`);
       const main = await exist.json();
       console.log(main);
       if (main.length > 0) {

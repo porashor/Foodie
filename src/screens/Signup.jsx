@@ -12,7 +12,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const data = await fetch("http://localhost:4000/users", {
+            const data = await fetch(`${import.meta.env.VITE_HOST_LINK}/users`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

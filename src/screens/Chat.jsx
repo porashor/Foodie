@@ -5,7 +5,7 @@ const Chat = () => {
     useEffect(() => {
         const data = async () => {
             try {
-                const res = await fetch(`http://localhost:4000/suggest`);
+                const res = await fetch(`${import.meta.env.VITE_HOST_LINK}/suggest`);
                 const main = await res.json();
                 console.log(main);
               } catch (error) {

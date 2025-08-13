@@ -1,4 +1,4 @@
-import { s } from "framer-motion/client";
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Prev = ({ data }) => {
@@ -38,7 +38,7 @@ const Prev = ({ data }) => {
       setLoading(true);
       setErr(null);
       try {
-        const res = await fetch(`http://localhost:4000/order/${data.email}`);
+        const res = await fetch(`${import.meta.env.VITE_HOST_LINK}/order/${data.email}`);
         const main = await res.json();
         if (!main || main.length === 0) {
           setErr("No data found");
@@ -60,7 +60,7 @@ const Prev = ({ data }) => {
   const deleteOrder = async () => {
     if(Object.keys(order).length > 0){
     try {
-      await fetch(`http://localhost:4000/order/${data.email}`, {
+      await fetch(`${import.meta.env.VITE_HOST_LINK}/order/${data.email}`, {
         method: "DELETE",
       });
       navigate("/");

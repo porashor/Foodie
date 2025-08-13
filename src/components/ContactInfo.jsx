@@ -1,5 +1,4 @@
 import React from 'react';
-import RunningAnimation from './RunningAnimation';
 
 const ContactInfo = () => {
   return (
@@ -17,7 +16,6 @@ const ContactInfo = () => {
           📧 info-foodie@foodie.com
         </p>
       </div>
-      <RunningAnimation/>
     </div>
   );
 };
