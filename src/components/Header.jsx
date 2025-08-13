@@ -19,8 +19,7 @@ const Header = () => {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Login", path: "/login" },
-    { name: "Signup", path: "/signup" },
-    { name: "Chat AI", path: "/chat" },
+    { name: "Signup", path: "/signup" }
   ];
   return (
     <div>

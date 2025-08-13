@@ -6,7 +6,6 @@ const Users = require("./user/usersall");
 const logUser = require("./user/loguser");
 const cors = require("cors");
 const order = require("./OrdersRoute/order");
-const suggestMsg = require("./suggestMsg/suggestMsg");
 
 // Create an Express application
 const app = express();
@@ -15,12 +14,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-<<<<<<< HEAD
     "https://foodie-8txr.onrender.com/"
-=======
-    "https://foodie-8txr.onrender.com",
-    "http://foodie-backend-f8ei.onrender.com"
->>>>>>> origin/main
   ], // or "*" for all origins during dev
   credentials: true
 }));
@@ -41,7 +35,6 @@ app.use("/catagory", Category);
 app.use("/users", Users);
 app.use("/login", logUser);
 app.use("/order", order);
-// app.use("/suggest", suggestMsg);
 
 // main app is listening on port 4000
 app.listen(port, () => {
