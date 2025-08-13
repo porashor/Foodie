@@ -11,7 +11,7 @@ const Modal = ({ children, onClose }) => {
           </div>
           <div className="modal-body">{children}</div>
           <div className="modal-footer">
-            <button className="btn btn-success" onClick={onClose}>Confirm</button>
+            <button className="btn btn-success" onClick={onClose}>Add more items</button>
           </div>
         </div>
       </div>

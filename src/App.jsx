@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './screens/Login'
 import MyCart from './screens/MyCart'
 import Profile from './screens/Profile'
+import Chat from './screens/Chat'
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
       <Foother/>
     </Router>

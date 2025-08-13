@@ -1,9 +1,38 @@
+import { s } from "framer-motion/client";
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Prev = ({ data }) => {
-  const [order, setOrder] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const [order, setOrder] = useState({});
+  const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
+  ///
+  const [timeLeft, setTimeLeft] = useState(0); // in milliseconds
+
+  useEffect(() => {
+    const targetTime = new Date(order.date).getTime() + 1000 * 60 * 30;
+
+    const updateTime = () => {
+      const now = Date.now();
+      const remaining = targetTime - now;
+      setTimeLeft(remaining > 0 ? remaining : 0);
+    };
+
+    updateTime(); // initial call
+    const interval = setInterval(updateTime, 1000); // update every second
+
+    return () => clearInterval(interval); // cleanup on unmount
+  }, []);
+
+  const formatTime = (ms) => {
+    const totalSeconds = Math.floor(ms / 1000);
+    const mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+    const secs = String(totalSeconds % 60).padStart(2, '0');
+    return `${mins}:${secs}`;
+  };
+  ///
+  formatTime(timeLeft);
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -23,16 +52,37 @@ const Prev = ({ data }) => {
       }
     };
     getData();
+    setInterval(()=>{
+      setLoading(false)
+    }, 5000);
   }, []);
-  console.log(order);
+
+  const deleteOrder = async () => {
+    if(Object.keys(order).length > 0){
+    try {
+      await fetch(`http://localhost:4000/order/${data.email}`, {
+        method: "DELETE",
+      });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }else{
+    alert("Order not found");
+  }
+  };
   return (
     <div>
       <div className="container my-5">
-        <h2 className="bg-info py-2 px-2">Your orders</h2>
+        <div className="bg-info py-2 px-2 d-flex justify-content-between">
+          <h2>Your orders</h2>
+        <button className="btn btn-danger" onClick={deleteOrder}>Delete Order</button>
+        </div>
         {/* data loaded here  */}
-        {order ? (
+        {order.state && order.state.length > 0 ? (
           <div>
             <div className="my-3 d-flex justify-content-between flex-column gap-2 fs-5">
+              <div>Order Date : {new Date(order.date).getTime()}{timeLeft}</div>
               <div>Name : {order.name}</div>
               <div>Email : {order.email}</div>
               <div>Total Amount : {order.TotalAmount}</div>
@@ -71,9 +121,10 @@ const Prev = ({ data }) => {
             </table>
           </div>
         ) : (
-          <h1>{loading ? "loading..." : err}</h1>
+          <h1>{loading ? "loading..." : <div>{err}</div>}</h1>
         )}
       </div>
+      
     </div>
   );
 };
