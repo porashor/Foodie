@@ -36,7 +36,7 @@ const MyCart = () => {
             TotalAmount: totalAmount,
             date: new Date(),
           };
-          const res = await fetch("http://localhost:4000/order", {
+          const res = await fetch(`${import.meta.env.VITE_HOST_LINK}/order`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
