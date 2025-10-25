@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://foodie-8txr.onrender.com/"
+    "https://foodie-8txr.onrender.com"
   ], // or "*" for all origins during dev
   credentials: true
 }));
